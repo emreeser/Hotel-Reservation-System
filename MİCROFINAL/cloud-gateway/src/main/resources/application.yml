@@ -1,0 +1,35 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: PRICE-LIST-SERVICE
+          uri: lb://PRICE-LIST-SERVICE
+          predicates:
+            - Path=/getAllss
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: PRICE-LIST-SERVICE
+                fallbackuri: forward:/priceServiceFallBack
+        - id: HOTEL-DETAILS-SERVICE
+          uri: lb://HOTEL-DETAILS-SERVICE
+          predicates:
+            - Path=/getAll
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: HOTEL-DETAILS-SERVICE
+                fallbackuri: forward:/hotelServiceFallBack
+hystrix:
+  command:
+    fallbackcmd:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 4000
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream
