@@ -5,21 +5,43 @@ spring:
         - id: PRICE-LIST-SERVICE
           uri: lb://PRICE-LIST-SERVICE
           predicates:
-            - Path=/getAllss
+            - Path=/Price/**
           filters:
             - name: CircuitBreaker
               args:
                 name: PRICE-LIST-SERVICE
                 fallbackuri: forward:/priceServiceFallBack
+            - RewritePath=/Price/(?<segment>.*),/$\{segment}
         - id: HOTEL-DETAILS-SERVICE
           uri: lb://HOTEL-DETAILS-SERVICE
           predicates:
-            - Path=/getAll
+            - Path=/Hotel/**
           filters:
             - name: CircuitBreaker
               args:
                 name: HOTEL-DETAILS-SERVICE
                 fallbackuri: forward:/hotelServiceFallBack
+            - RewritePath=/Hotel/(?<segment>.*),/$\{segment}
+        - id: BOOKING-MANAGER-SERVICE
+          uri: lb://BOOKING-MANAGER-SERVICE
+          predicates:
+            - Path=/Booking/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: BOOKING-MANAGER-SERVICE
+                fallbackuri: forward:/bookingServiceFallBack
+            - RewritePath=/Booking/(?<segment>.*),/$\{segment}
+        - id: ROOM-MANAGER-SERVICE
+          uri: lb://ROOM-MANAGER-SERVICE
+          predicates:
+            - Path=/Room/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: ROOM-MANAGER-SERVICE
+                fallbackuri: forward:/roomServiceFallBack
+            - RewritePath=/Room/(?<segment>.*),/$\{segment}
 hystrix:
   command:
     fallbackcmd:

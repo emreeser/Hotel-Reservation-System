@@ -26,7 +26,7 @@ public class PriceController {
         return priceService.getByRoomType(roomType);
     }
 
-    @RequestMapping("/getAllss")
+    @RequestMapping("/getAll")
     public List<Price> getAll(){
         return priceService.getAll();
     }
