@@ -12,16 +12,6 @@ spring:
                 name: PRICE-LIST-SERVICE
                 fallbackuri: forward:/priceServiceFallBack
             - RewritePath=/Price/(?<segment>.*),/$\{segment}
-        - id: HOTEL-DETAILS-SERVICE
-          uri: lb://HOTEL-DETAILS-SERVICE
-          predicates:
-            - Path=/Hotel/**
-          filters:
-            - name: CircuitBreaker
-              args:
-                name: HOTEL-DETAILS-SERVICE
-                fallbackuri: forward:/hotelServiceFallBack
-            - RewritePath=/Hotel/(?<segment>.*),/$\{segment}
         - id: BOOKING-MANAGER-SERVICE
           uri: lb://BOOKING-MANAGER-SERVICE
           predicates:
