@@ -1,19 +1,14 @@
-package com.HotelReservation.roommanagermicroservice.model;
+package com.HotelReservation.bookingmanagermicroservice.model;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-
-@Document
 public class Room {
-
-    @Id
-    String id;
     String roomName;
     String roomType;
     String availability;
 
+    public Room() {
+    }
+
     public Room(String roomName, String roomType, String availability) {
-        super();
         this.roomName = roomName;
         this.roomType = roomType;
         this.availability = availability;
@@ -31,17 +26,24 @@ public class Room {
         return roomType;
     }
 
-    public String getAvailability() { return availability;}
-
-    public void setAvailability(String availability) {this.availability = availability;}
-
     public void setRoomType(String roomType) {
         this.roomType = roomType;
     }
 
-    @Override
-    public String toString() {
-        return "Room [roomName=" + roomName + ", roomType=" + roomType +", availability=" + availability + "]";
+    public String getAvailability() {
+        return availability;
     }
 
+    public void setAvailability(String availability) {
+        this.availability = availability;
+    }
+
+    @Override
+    public String toString() {
+        return "Room [" +
+                "roomName=" + roomName +
+                ", roomType='" + roomType +
+                ", availability=" + availability +
+                ']';
+    }
 }

@@ -13,19 +13,24 @@ public class Booking {
     String custFullName;
     String custPhone;
     String custUserID;
+    String roomType;
+    String roomName;
 
     int totalNights;
 
     public static int nights;
     Long totalPrice;
 
-    public Booking(String custFullName, String custPhone, String custUserID, int totalNights) {
+    public Booking(String custFullName, String custPhone, String custUserID,
+                   int totalNights,String roomType, String roomName) {
         //super();
         this.custFullName = custFullName;
         this.custPhone = custPhone;
         this.custUserID = custUserID;
         this.totalNights = totalNights;
         this.nights = totalNights;
+        this.roomType = roomType;
+        this.roomName = roomName;
     }
 
     BookingController b = new BookingController();
@@ -62,6 +67,14 @@ public class Booking {
         this.totalNights = totalNights;
     }
 
+    public String getRoomType() {return roomType;}
+
+    public String getRoomName() {return roomName;}
+
+    public void setRoomName(String roomName) {this.roomName = roomName;}
+
+    public void setRoomType(String roomType) {this.roomType = roomType;}
+
     public Long getTotalPrice() {
         return totalPrice;
     }
@@ -73,7 +86,8 @@ public class Booking {
     @Override
     public String toString() {
         return "Booking [custFullName=" + custFullName  + ", custPhone=" + custPhone
-                + ", custUserId=" + custUserID + ", totalNights=" + totalNights + "]";
+                + ", custUserId=" + custUserID + ", totalNights=" + totalNights +
+                ", roomType=" + roomType+ ", roomName=" + roomName+"]";
     }
 
 }

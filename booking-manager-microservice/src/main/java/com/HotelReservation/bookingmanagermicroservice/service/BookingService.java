@@ -13,9 +13,10 @@ public class BookingService {
     @Autowired
     private BookingRepository bookingRepository;
 
-    public Booking create(String custFullName, String custPhone, String custUserID, int totalNights){
+    public Booking create(String custFullName, String custPhone, String custUserID,
+                          int totalNights, String roomType, String roomName){
 
-        return bookingRepository.save(new Booking(custFullName,custPhone,custUserID,totalNights));
+        return bookingRepository.save(new Booking(custFullName,custPhone,custUserID,totalNights,roomType,roomName));
     }
 
     public List<Booking> getAll(){ return bookingRepository.findAll(); }

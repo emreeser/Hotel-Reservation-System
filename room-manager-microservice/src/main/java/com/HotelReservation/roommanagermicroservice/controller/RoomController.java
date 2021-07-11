@@ -24,9 +24,9 @@ public class RoomController {
     }
 
     @RequestMapping("/get")
-    public Room getRoom(@RequestParam String roomName)
+    public List<Room>  getRoom(@RequestParam String roomType)
     {
-        return roomService.getByRoomName(roomName);
+        return roomService.getByRoomType(roomType);
     }
 
     @RequestMapping("/getAll")
@@ -36,9 +36,9 @@ public class RoomController {
     }
 
     @RequestMapping("/update")
-    public String update(@RequestParam String roomName, @RequestParam String roomType)
+    public String update(@RequestParam String roomName, @RequestParam String roomType, @RequestParam String availability)
     {
-        Room r = roomService.update(roomName, roomType);
+        Room r = roomService.update(roomName, roomType, availability);
         return r.toString();
     }
 
@@ -47,6 +47,12 @@ public class RoomController {
     {
         roomService.delete(roomName);
         return roomName+" is deleted";
+    }
+
+    @RequestMapping("/makeAvailableAll")
+    public  String makeAvailableAll(){
+        roomService.makeAvailableAll();
+        return "All rooms are available.";
     }
 
     @RequestMapping("/deleteAll")
